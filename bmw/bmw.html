@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据可视化</title>
+    <link rel="stylesheet" href="css/bmw.css"/>
+  </head>
+  <body>
+    <!-- 头部的盒子 -->
+    <header>
+      <h1>BMW</h1>
+      <div class="showTime"></div>
+      <script>
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+          clearTimeout(t); //清除定时器
+          dt = new Date();
+          var y = dt.getFullYear();
+          var mt = dt.getMonth() + 1;
+          var day = dt.getDate();
+          var h = dt.getHours(); //获取时
+          var m = dt.getMinutes(); //获取分
+          var s = dt.getSeconds(); //获取秒
+          document.querySelector(".showTime").innerHTML =
+            "当前时间：" +
+            y +
+            "年" +
+            mt +
+            "月" +
+            day +
+            "-" +
+            h +
+            "时" +
+            m +
+            "分" +
+            s +
+            "秒";
+          t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+      </script>
+      &
+    </header>
+
+    <!-- 页面主体部分 -->
+    <section class="mainbox">
+      <div class="column">
+        <div class="panel bar">
+          <h2>各车型售价                  </h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel line">
+          <h2>
+            BMW销量 <a href="javacript:;">2020</a
+            ><a href="javascript:;">2021</a>
+          </h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel pie">
+          <h2>主要车型</h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+      <div class="column">
+        <!-- 中上模块制作 -->
+        <div class="no">
+          <div class="no-hd">
+            <ul>
+              <li>4</li>
+              <li>404</li>
+            </ul>
+          </div>
+          <div class="no-bd">
+            <ul>
+              <li>全球排名</li>
+              <li>品牌市值(亿美元)</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 车模模块 -->
+        <div class="mod">
+          <img src="images/carmod/0000.jpg" alt="" id="imgID"> 
+        </div>
+        <div class="xia">
+          <a>以上车型以奥迪A7为标准模型
+          <br/>可划动查看汽车全身</a>
+        </div>
+      </div>
+      <div class="column">
+        <div class="panel bar2">
+          <h2>用户口碑(评分)</h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel line2" id="zhe2">
+          <h2>宝马公司市值</h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel pie2">
+          <h2>海外销量</h2>
+          <div class="chart">图表</div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+    </section>
+    <script src="js/flexible.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bmw.js"></script>
+  </body>
+</html>
+<script>
+  var clientX=0
+  var changeX=0
+  var carid=0
+  var ifmove=false
+  init()
+  function init(){
+    var mod=document.querySelector(".mod")
+    mod.addEventListener("mousedown",clickcar,false)
+    mod.addEventListener("touchstart",clickcar,false)
+  }
+
+  function clickcar(e){
+    if(e.touches){
+      clientX=e.touches[0].pageX
+      changeX=e.touches[0].pageX
+    }else {
+      clientX=e.pageX
+      changeX=e.pageX
+    }
+    ifmove=true
+    document.addEventListener("mousemove",move,false)
+    document.addEventListener("touchmove",move,false)
+
+    document.addEventListener("mouseup",endclick,false)
+    document.addEventListener("touchend",endclick,false)
+  } 
+
+  function move(e){
+    if(ifmove){
+      if(e.touches){
+        var x = e.touches[0].pageX
+      }else{
+        var x = e.pageX
+      }
+    }
+    if(x < clientX){
+      if(changeX - x > 50){
+        carid += 1
+        if(carid==36){
+          carid=0
+        }
+        if(carid<10){
+          imgID.src=`./images/carmod/000${carid}.jpg`
+        }else{
+          imgID.src=`./images/carmod/00${carid}.jpg`
+        }
+        changeX=x
+      }
+    }else if(x==clientX){
+      console.log("不动");
+    }else{
+      if(x - changeX > 50){
+        carid-=1
+        if(carid == -1){
+          carid = 35
+        }
+        if(carid<10){
+          imgID.src=`./images/carmod/000${carid}.jpg`
+        }else{
+          imgID.src=`./images/carmod/00${carid}.jpg`
+        }
+        changeX=x
+      }
+      clientX = x
+    }
+  }
+
+
+  function endclick(){
+    ifmove=false
+    console.log("endclick");
+  }
+</script>

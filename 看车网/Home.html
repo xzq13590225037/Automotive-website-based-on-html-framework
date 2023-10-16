@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>看车网</title>
+	<meta name="description" content="Free Html5 Templates and Free Responsive Themes Designed by Kimmy | zerotheme.com">
+	<meta name="author" content="www.zerotheme.com">
+	
+    <!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <!-- CSS
+  ================================================== -->
+  	<link rel="stylesheet" href="css/zerogrid.css">
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="css/responsiveslides.css" />
+	
+	<!--[if lt IE 8]>
+       <div style=' clear: both; text-align:center; position: relative;'>
+         <a href="http//windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+           <img src="http//storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+        </a>
+      </div>
+    <![endif]-->
+    <!--[if lt IE 9]>
+		<script src="js/html5.js"></script>
+		<script src="js/css3-mediaqueries.js"></script>
+	<![endif]-->
+	
+	<link href='./images/favicon.ico' rel='icon' type='image/x-icon'/>
+    <script src="js/jquery.min.js"></script>
+	<script src="js/responsiveslides.js"></script>
+
+	<!--用户数据录入js-->
+	<script>
+        window.onload = () => {
+            // 给获取的 id 添加点击事件
+            // 添加用户
+            document.getElementById("btn_submit").onclick = function () {
+                let username = document.getElementById("username").value;
+				console.log(username);
+				let email = document.getElementById("email").value;
+                let tel = document.getElementById("tel").value;
+                let tbody = document.getElementById("userTbody");
+                if (username !== null && username !== '' && username !== undefined) {
+                    // 设置要插入的表格行信息
+                    let tr = "<tr id=\"" + new Date().getTime() + "\">\n" +
+                        "\t\t\t\t<td>" + username + "</td>\n" +
+                        "\t\t\t\t<td>" + email + "</td>\n" +
+                        "\t\t\t\t<td>" + tel + "</td>\n" +
+                        "\t\t\t\t<td><a href=\"javascript:delRow('" + new Date().getTime() + "')\">删除</a></td>\n" +
+                        "\t\t\t</tr>";
+
+                    // 把新插入的行信息插入表格中
+                    console.log(tbody.innerText);
+                    console.log(tbody.innerHTML);
+                    tbody.innerHTML += tr;
+                } else {
+					alert("姓名不能为空！");
+				}
+				// 添加信息之后把表单设置为空
+				document.getElementById("username").value = "";
+				document.getElementById("email").value = "";
+				document.getElementById("tel").value = "";
+            };
+
+            document.getElementById("btn_removeAll").onclick = () => {
+                var tbody = document.getElementById("userTbody");
+                tbody.innerHTML = "";
+            };
+        };
+        // 删除用户
+        function delRow(id) {
+            let tr = document.getElementById(id);
+            tr.parentNode.removeChild(tr);
+        }
+    </script>
+
+	<!--用户数据录入css-->
+	<style>
+		.search{
+			position: absolute;
+			right: 0px;
+			top: 0px;
+			color: white;
+			font-size: 20px;
+		}
+		.search1{
+			position: absolute;
+			right: 0px;
+			top: 50px;
+			font-size: 15px;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+<!--------------Header--------------->
+<header>
+	<div class="wrap-header zerogrid">
+		<div id="logo"><a style="font-size :40px; color:cornsilk; ">看车网</a></div>
+		
+		<form name="userForm" class="search">
+			<center>
+				<br/>
+				用户名:<input id="username" name="username" type="text" size=15/>
+				E-mail:<input id="email" name="email" type="text" size=15/>
+				电话:<input id="tel" name="tel" type="text" size=15/>
+				<input type="button" value="添加" id="btn_submit"/>
+				<input type="button" value="删除所有" id="btn_removeAll"/>
+			</center>
+		</form>
+		<hr/>
+		<table border="1" align="center" cellpadding=0 cellspacing=0 width=400 class="search1">
+			<thead>
+			<tr>
+				<th>用户名</th>
+				<th>E-mail</th>
+				<th>电话</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody id="userTbody">
+			<tr id="tr1">
+				<td>熊子谦</td>
+				<td>20212034002@scnu.com</td>
+				<td>1359022****</td>
+				<td><a href="javascript:delRow('tr1')">删除</a></td>
+			</tr>
+			</tbody>
+		</table>>
+	</div>
+</header>
+
+
+<nav>
+	<div class="wrap-nav zerogrid">
+		<div class="menu">
+			<ul>
+				<li><a href="../熊大看车/Home.html">首页</a></li>
+				<li><a href="#chexing">车型</a></li>
+				<li><a href="#pinpai">品牌</a></li>
+				<li><a href="#abt">关于我们</a></li>
+				<li><a href="#">问题反馈</a></li>
+			</ul>
+		</div>		
+	</div>
+</nav>
+
+<script>
+    var picArr=new Array("images/audi.jpg","images/che1.jpg","images/che2.jpg");
+    var index=0;
+    function next(){
+        index++;
+        if(index==picArr.length){
+            index=0;
+        }
+        document.getElementById("pic").src=picArr[index];
+    }
+    function pre(){
+        index--;
+        if(index<0){
+            index=picArr.length-1;
+        }
+        document.getElementById("pic").src=picArr[index];
+    }
+</script>
+
+
+<div class="featured">
+	<div class="wrap-featured zerogrid">
+		<div class="slider">
+			<div class="rslides_container">
+				<ul class="rslides" id="slider">
+					<li><img src="images/audi.jpg" id="pic"/></li>
+					<li><img src="images/che1.jpg" id="pic"/></li>
+					<li><img src="images/che2.jpg" id="pic"/></li>
+				</ul>
+				<div id="buttonBox">
+					<input type="button" value="Last" onclick="pre();" class="last">
+					<input type="button" value="Next" onclick="next();" class="next">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--------------Content--------------->
+<section id="content">
+	<div class="wrap-content zerogrid">
+		<div class="row">
+			<div id="main-content" class="col-2-3">
+				<div class="wrap-col">
+					<article>
+						<img src="images/benz.jpg"/>
+						<h2><a href="../benz/benz.html" name="chexing">奔驰汽车公司</a></h2>
+						<span class="info">By Admin on May,30, 2022 with <a href="#">01 Commnets</a></span>
+						<p>“we do not need to invent a good story - we write history since 1886.”
+							“我们不需要去编造一个动听的故事-自从1886年我们就书写了历史”
+							奔驰汽车，一个几乎全世界无人不知的汽车品牌。从汽车诞生直到今天，奔驰汽车的发展史不仅仅是一个传奇，更是代表了人类汽车工业的发展史。现在，奔驰汽车已过百岁寿辰，然而它的名字和公司的口号一样，依然叫的响亮。</p>
+					</article>
+					<article>
+						<img src="images/bmw.jpg"/>
+						<h2><a href="../bmw/bmw.html">宝马汽车公司</a></h2>
+						<span class="info">By Admin on May,30, 2022 with <a href="#">01 Commnets</a></span>
+						<p>宝马公司创建于1916年，总部设在德国巴伐利亚州慕尼黑，BMW的蓝白标志宝马总部所在地巴伐利亚州州旗的颜色，百年来，宝马汽车由最初的一家飞机引擎生产厂发展成为以高级轿车为主导，并生产享誉全球的飞机引擎、越野车和摩托车的企业集团，名列世界汽车公司前列</p>
+					</article>
+					<article>
+						<img src="images/byd.jpg"/>
+						<h2><a href="../byd/byd.html" name="pinpai">比亚迪汽车公司</a></h2>
+						<span class="info">By Admin on May,30, 2022 with <a href="#">01 Commnets</a></span>
+						<p>比亚迪股份有限公司（简称“比亚迪”）成立于1995年2月，总部位于广东省深圳市。公司现有员工超过22万人，业务横跨汽车、轨道交通、新能源和电子四大产业，在香港和深圳两地上市，营收入和市值均超千亿元。比亚迪致力于用技术创新促进人类社会的可持续发展，助力实现“碳达峰、碳中和”目标。</p>
+					</article>
+					<article>
+						<img src="images/auto.jpg"/>
+						<h2><a href="../auto/auto.html">大众汽车公司</a></h2>
+						<span class="info">By Admin on May,30, 2022 with <a href="#">01 Commnets</a></span>
+						<p>大众汽车（德语：Volkswagen）是一家总部位于德国沃尔夫斯堡的汽车制造公司，也是世界四大汽车生产商之一的大众集团的核心企业。2019年位居《财富》世界500强第9位。Volks在德语中意思为“国民”，Wagen在德语中意思为“汽车”，全名的意思即“国民汽车”，故又常简称为“VW”。台湾译为福斯汽车，港澳、大陆译为大众汽车或福士汽车。整个汽车集团在2012年产销超过907万辆，大众品牌则超过574万辆</p>
+					</article>
+
+				</div>
+			</div>
+			<div id="sidebar" class="col-1-3">
+				<div class="wrap-col">
+					<div class="box">
+						<div class="heading"><h2>赞助商</h2></div>
+						<div class="content">
+							<a><img src="images/themeforest.jpg"/></a>
+							<a><img src="images/zerotheme.jpg"/></a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="heading"><h2>靓车集</h2></div>
+						<div class="content">
+							<div class="photos">
+								<a><img src="images/che/audi.jpg" /></a>
+								<a><img src="images/che/aion.png" /></a>
+								<a><img src="images/che/auto.jpg" /></a>
+								<a><img src="images/che/benz.jpg" /></a>
+								<a><img src="images/che/benz1.jpg" /></a>
+								<a><img src="images/che/bmw.jpg" /></a>
+								<a><img src="images/che/byd.jpg" /></a>
+								<a><img src="images/che/honda.jpg" /></a>
+								<a><img src="images/che/nissan.jpg" /></a>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="heading"><h2>销量</h2></div>
+						<div class="content">
+							<div class="linklist">
+								<ul>
+									<li><a>全国销量</a></li>
+									<li><a>海外销量</a></li>
+									<li><a>地区销量</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="heading"><h2>厂商</h2></div>
+						<div class="content">
+							<div class="linklist">
+								<ul>
+									<li><a>Mercedes-Benz</a></li>
+									<li><a>BMW</a></li>
+									<li><a>Audi</a></li>
+									<li><a>Honda</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="heading"><h2>用户数据</h2></div>
+						<div class="content">
+							<div class="linklist">
+								<ul>
+									<li><a>用户口碑</a></li>
+									<li><a>经销商网点</a></li>
+									<li><a>销售网点</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="heading"><h2>燃料类型</h2></div>
+						<div class="content">
+							<div class="linklist">
+								<ul>
+									<li><a>汽油专区</a></li>
+									<li><a>油电混合</a></li>
+									<li><a>新能源专区</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--------------Footer--------------->
+<footer>
+	<div class="copyright">
+		<p>Copyright © 2022 - <a href="#" target="_blank"  name="abt">Car's Home</a> by <a href="#" target="_blank">Car's Home.com</a></p>
+	</div>
+</footer>
+
+</body></html>
